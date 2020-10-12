@@ -92,8 +92,24 @@ body{
     transition: 300ms all;
 }
 
-#menu a:hover{
+#menu a:hover,
+#menu .active{
     color: #34aa43;
+}
+
+.alert-danger-provisional{
+    color:red; 
+    font-weight:bold;
+}
+
+.alert-success-provisional{
+    color:rgb(3, 170, 17); 
+    font-weight:bold;
+}
+
+.alert-purple-provisional{
+    color:purple; 
+    font-weight:bold;
 }
 
 #slider{
