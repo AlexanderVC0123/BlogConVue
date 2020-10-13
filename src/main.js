@@ -8,6 +8,7 @@ import HelloWorld from './components/HelloWorld.vue';
 import Blog from './components/Blog.vue';
 import Formulario from './components/Formulario.vue';
 import Pagina from './components/Pagina.vue';
+import Peliculas from './components/Peliculas.vue';
 import ErrorComponent from './components/ErrorComponent.vue'
 
 Vue.config.productionTip = false
@@ -21,6 +22,7 @@ const routes = [
   { path: '/formulario', component: Formulario},
   { path: '/pagina/:id?', name:'pagina', component: Pagina},
   { path: '/ultimos-articulos', component: LastArticles },
+  { path: '/peliculas', component: Peliculas},
   { path: '/mi-componente', component: MiComponente},
   { path: '/hola-mundo', component: HelloWorld},
   { path: '/', component: LastArticles},

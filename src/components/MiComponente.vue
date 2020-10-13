@@ -29,7 +29,11 @@
         Eres menor de edad!!
     </p> 
 
-    
+    <h2>Directiva iterativa</h2>
+    <ol>
+      <li v-for="pelicula in peliculas" :key="pelicula">{{pelicula}}</li> 
+    </ol>
+
   </section>
 </template>
 
@@ -41,7 +45,8 @@ export default {
       titulo: "Mi componente",
       subtitulo: "Soy el subtitulo de mi componente",
       nombre: '',
-      edad: 18
+      edad: 18,
+      peliculas:['Batman vs Superman', 'El señor de los anillos', 'La chaqueta metalica', 'El lobo de Wall Street']
     };
   },
 };
