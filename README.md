@@ -1,7 +1,12 @@
 # BlogConVue
 
+<<<<<<< HEAD
 # Proyecto con Vue creando un blog donde poder crear, leer, editar, eliminar atículos. 
 # Se pueden hacer llamadas API Rest a la parte back end con Node.js 
+=======
+# Proyecto con Vue creando un blog donde poder crear, leer, editar, eliminar atículos.
+# Se pueden hacer llamadas API Rest a la parte back end con Node.js
+>>>>>>> master
 
 # Para podere usarlo hay que instalar npm si no se tuviera instalado mediante
 
@@ -14,4 +19,7 @@ npm run serve
 # Enlace para poder clonar el backend:
 
 https://github.com/AlexanderVC0123/BackEnd-Node.js
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
