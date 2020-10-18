@@ -14,6 +14,9 @@
       {{ pelicula.year }}
     </span>
     <a href="#">Leer más</a>
+    <input type="button" value="Marcar como favorita" 
+      @click="pasarFavAlPadre(pelicula)"
+    />
     <div class="clearfix"></div>
   </article>
 </template>
@@ -22,5 +25,12 @@
 export default {
   name: 'Pelicula',
   props: ['pelicula'],
+  methods: {
+    pasarFavAlPadre(pelicula){
+/*       console.log(pelicula);
+      alert("Botón pulsado");
+ */      this.$emit('favorita', pelicula)
+    }
+  }
 };
 </script>

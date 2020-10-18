@@ -1,17 +1,13 @@
 <template>
   <div id="app">
-<!--     <img alt="Vue logo" src="../assets/logo.png">
+    <!--     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <MiComponente></MiComponente>
- -->    
+ -->
     <HeaderComponent></HeaderComponent>
-    <SliderComponent></SliderComponent>
-    <div class="center">
-      <!-- <LastArticles></LastArticles> -->
-      <router-view></router-view>
-      <SidebarComponent></SidebarComponent>
-    </div>
-    <div class="clearfix"></div>
+    <!-- <LastArticles></LastArticles> -->
+    <router-view></router-view>
+
     <FooterComponent></FooterComponent>
   </div>
 </template>
@@ -19,26 +15,21 @@
 <script>
 //import HelloWorld from './components/HelloWorld.vue';
 //import MiComponente from './components/MiComponente.vue';
-import HeaderComponent from './components/HeaderComponent.vue';
-import SliderComponent from './components/SliderComponent.vue';
-import SidebarComponent from './components/SidebarComponent';
+import HeaderComponent from "./components/HeaderComponent.vue";
 // import LastArticles from './components/LastArticles';
-import FooterComponent from './components/FooterComponent';
-
+import FooterComponent from "./components/FooterComponent";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-/*     HelloWorld,
+    /*     HelloWorld,
     MiComponente,
- */    
+ */
     HeaderComponent,
-    SliderComponent,
-    SidebarComponent,
     // LastArticles,
-    FooterComponent
-  }
-}
+    FooterComponent,
+  },
+};
 </script>
 
 <style>
@@ -51,5 +42,5 @@ export default {
   margin-top: 60px;
 } */
 
-@import './assets/css/style.css';
+@import "./assets/css/style.css";
 </style>
