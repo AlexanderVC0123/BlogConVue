@@ -4,15 +4,25 @@
       <section id="content">
         <h2 class="subheader">Películas</h2>
 
+        <div class="mis-datos" v-if="misDatos">
+          <p v-html="misDatos"></p>
+          <br/>
+          <p>{{ correo | mayusculas | concatenarYear('Este es el mejor año') }}</p>
+        </div>
+
         <div class="favorita" v-if="favorita">
-            La pelicula favorita es:
-            <h3>{{favorita.title}}</h3>
+          La pelicula favorita es:
+          <h3>{{ favorita.title }}</h3>
         </div>
         <!--Listado articulos-->
         <div id="articles">
-          <div v-for="pelicula in peliculas" v-bind:key="pelicula.title">
-            <Pelicula :pelicula="pelicula"
-                @favorita="haLlegadoLaPeliculaFav"
+          <div
+            v-for="pelicula in peliculasMayusculas"
+            v-bind:key="pelicula.title"
+          >
+            <Pelicula
+              :pelicula="pelicula"
+              @favorita="haLlegadoLaPeliculaFav"
             ></Pelicula>
           </div>
         </div>
@@ -34,16 +44,45 @@ export default {
     SidebarComponent,
   },
   methods: {
-      haLlegadoLaPeliculaFav(favorita){
-/*           console.log(favorita);
+    haLlegadoLaPeliculaFav(favorita) {
+      /*           console.log(favorita);
           alert("Se ha ejecutado el evento en el padre");
- */      
-    this.favorita = favorita;
+ */
+      this.favorita = favorita;
+    },
+  },
+
+  filters: {
+    mayusculas(value){
+      return value.toUpperCase();
+    },
+    concatenarYear(value, message){
+      var date = new Date();
+
+      return value + ' ' + date.getFullYear() + ' ' + message;
     }
   },
+  computed: {
+    peliculasMayusculas() {
+      var peliculasMod = this.peliculas;
+      for (var i = 0; i < peliculasMod.length; i++) {
+        peliculasMod[i].title = peliculasMod[i].title.toUpperCase();
+      }
+      return peliculasMod;
+    },
+    misDatos(){
+      return this.nombre + ' ' + this.apellidos + '<br/>' + '<strong>Correo electrónico: </strong>' + this.correo
+    }
+  },
+  
+
+
   data() {
     return {
-        favorita: null,
+      nombre:'Alexander',
+      apellidos: 'Valladares',
+      correo: 'alexandervalladaresc@gmail.com',
+      favorita: null,
       peliculas: [
         {
           title: "Batman vs Superman",

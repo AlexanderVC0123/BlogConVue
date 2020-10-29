@@ -3,6 +3,42 @@
     <div class="center">
       <section id="content">
         <h2 class="subheader">Formulario</h2>
+
+        <form class="mid-form" @submit.prevent="mostrarUsuario()">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" v-model="user.nombre"/>
+            <div v-if="submited && !$v.user.nombre.required">Este campo es obligatorio</div>
+            <div v-if="submited && !$v.user.nombre.minLength">Este campo debe tener más carácteres</div>
+          </div>
+          <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" name="apellidos" v-model="user.apellidos"/>
+            <div v-if="submited && !$v.user.apellidos.required">Este campo es obligatorio</div>
+            <div v-if="submited && !$v.user.apellidos.minLength">Este campo debe tener más carácteres</div>
+          </div>
+          <div class="form-group">
+            <label for="biografia">Biografía</label>
+            <textarea name="bio" id="" cols="30" rows="10" v-model="user.bio"></textarea>
+            <div v-if="submited && !$v.user.bio.required">Este campo es obligatorio</div>
+            <div v-if="submited && !$v.user.bio.minLength">Este campo debe tener más carácteres</div>
+
+          </div>
+          <div class="form-group radiobuttons">
+            <input type="radio" name="genero" value="hombre" checked v-model="user.genero"/> Hombre
+            <input type="radio" name="genero" value="mujer" v-model="user.genero"/> Mujer
+            <input type="radio" name="genero" value="otros" v-model="user.genero"/> Otros
+          </div>
+
+          <div class="clearfix"></div>
+
+          <input type="submit" value="enviar" class="btn btn-success" />
+        </form>
+
+        <div class="datos" v-if="user.nombre && user.apellidos">
+          <h3>{{user.nombre +' '+user.apellidos}}</h3>
+        </div>
+
       </section>
       <SidebarComponent></SidebarComponent>
       <div class="clearfix"></div>
@@ -11,6 +47,7 @@
 </template>
 
 <script>
+import { required, minLength } from 'vuelidate/lib/validators'
 import SidebarComponent from "./SidebarComponent";
 
 export default {
@@ -18,5 +55,46 @@ export default {
   components: {
     SidebarComponent,
   },
+  validations: {
+    user: {
+      nombre: {
+        required,
+        minLength: minLength(2)
+      },
+      apellidos: {
+        required,
+        minLength: minLength(2)
+      },
+      bio: {
+        required,
+        minLength: minLength(10)
+      }
+    },
+    
+  },
+  data(){
+    return {
+      submited: false,
+      user: {
+        nombre: '',
+        apellidos: '',
+        bio: '',
+        genero: ''
+      }
+    }
+  },
+  methods: {
+    mostrarUsuario(){
+      console.log(this.user);
+      this.submited = true;
+
+      this.$v.$touch();
+      if(this.$v.$invalid){
+        return false;
+      }
+
+      alert('Validación pasada')
+    }
+  }
 };
 </script>

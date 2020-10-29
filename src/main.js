@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
+import Vuelidate from 'vuelidate'
 
 import LastArticles from './components/LastArticles.vue';
 import MiComponente from './components/MiComponente.vue';
@@ -14,6 +15,7 @@ import ErrorComponent from './components/ErrorComponent.vue'
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
+Vue.use(Vuelidate)
 
 const routes = [
 
