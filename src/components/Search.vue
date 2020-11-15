@@ -1,12 +1,17 @@
 <template>
   <div class="general">
-    <SliderComponent texto="Blog"></SliderComponent>
+    <SliderComponent :texto="'Busqueda: '+ searchString"></SliderComponent>
     <div class="center">
       <section id="content">
-        <h2 class="subheader">Blog</h2>
+
+        <h1 class="subheader" v-if="articles">Articulos encontrados</h1>
+        <h1 class="subheader" v-else>Sin resultados</h1>
 
         <div id="articles" v-if="articles">
           <Articles :articles="articles"></Articles>
+        </div>
+        <div v-else>
+            <h2> No hay artículos que coincidan con tu búsqueda</h2>
         </div>
 
       </section>
@@ -25,7 +30,7 @@ import SidebarComponent from "./SidebarComponent";
 import Articles from './Articles';
 
 export default {
-  name: "Blog",
+  name: "Search",
   components: {
     SliderComponent,
     SidebarComponent,
@@ -33,17 +38,19 @@ export default {
 
   },
   mounted() {
-    this.getArticles();
+    this.searchString = this.$route.params.searchString;
+    this.getArticlesBySearch(this.searchString);
   },
   data() {
     return {
       articles: [],
-      url: Global.url
+      url: Global.url,
+      searchString: null
     };
   },
   methods: {
-    getArticles() {
-      axios.get(this.url+"articles").then((res) => {
+    getArticlesBySearch(searchString) {
+      axios.get(this.url+"search/"+searchString).then((res) => {
         if (res.data.status === "success") {
           this.articles = res.data.articles;
           console.log(this.articles);
