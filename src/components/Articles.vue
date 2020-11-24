@@ -19,18 +19,20 @@
             v-if="!article.image"
           />
         </div>
-        <router-link :to="{name:'article', params: {id:article._id}}">
-          <h2>{{ article.title }}</h2>
+        <h2>
+          <router-link :to="{ name: 'article', params: { id: article._id } }">
+            {{ article.title }}
           </router-link>
-        <span class="date">{{ article.date|moment("from", "now") }}</span>
-        <a href="#">Leer más</a>
+        </h2>
+        <span class="date">{{ article.date | moment("from", "now") }}</span>
+        <router-link :to="{ name: 'article', params: { id: article._id } }"
+          >Leer más</router-link
+        >
         <div class="clearfix"></div>
       </article>
     </div>
     <div v-else-if="articles && articles.length < 1"></div>
-    <div v-else>
-        Cargando...
-    </div>
+    <div v-else>Cargando...</div>
   </section>
 </template>
 

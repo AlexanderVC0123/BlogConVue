@@ -15,6 +15,7 @@ import Search from './components/Search.vue';
 import Redirect from './components/Redirect';
 import CreateArticle from './components/CreateArticle'
 import ErrorComponent from './components/ErrorComponent.vue';
+import EditArticle from './components/EditArticle'
 
 Vue.config.productionTip = false
 
@@ -33,6 +34,7 @@ const routes = [
   { path: '/blog', component: Blog},
   { path: '/articulo/:id', name:'article', component: Article },
   { path: '/crear-articulo', name: 'create', component: CreateArticle },
+  { path: '/editar/:id', name:'edit', component: EditArticle },
   { path: '/formulario', component: Formulario},
   { path: '/pagina/:id?', name:'pagina', component: Pagina},
   { path: '/ultimos-articulos', component: LastArticles },

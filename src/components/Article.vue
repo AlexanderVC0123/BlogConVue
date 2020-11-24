@@ -26,6 +26,13 @@
             {{ article.content }}
           </p>
           <div class="clearfix"></div>
+
+          <router-link :to="'/editar/' + article._id" class="btn btn-warning"
+            >Editar</router-link
+          >
+          <a @click="deleteArticle(article._id)" class="btn btn-danger"
+            >Eliminar</a
+          >
         </article>
       </section>
       <SidebarComponent></SidebarComponent>
@@ -38,6 +45,7 @@
 import SidebarComponent from "./SidebarComponent";
 import { Global } from "../Global";
 import axios from "axios";
+import swal from "sweetalert";
 
 export default {
   name: "Article",
@@ -59,6 +67,29 @@ export default {
       axios.get(this.url + "article/" + articleId).then((res) => {
         if (res.data.status === "success") {
           this.article = res.data.article;
+        }
+      });
+    },
+    deleteArticle(articleId) {
+      swal({
+        title: "Estás seguro?",
+        text:
+          "Una vez aliminado, no podrás recuperar el archivo!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          axios.delete(this.url + "article/" + articleId).then(response => {
+            swal(
+              "Articulo borrado",
+              "El articulo se ha borrado correctamente",
+              "success"
+            );
+            this.$router.push("/blog");
+          });
+        } else {
+          swal("No has eliminado nada, tranquilo!");
         }
       });
     },
